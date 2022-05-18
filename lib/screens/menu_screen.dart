@@ -25,7 +25,16 @@ const Menu({Key? key}) : super(key: key);
 @override
 Widget build(BuildContext context) {
   return Container(
-    child: Text("aas"),
+    child: Column(children: [
+      Text("cs"),
+      Positioned.fill(
+        child: Image.asset(
+          'assets/image/menu.jpg',
+          fit: BoxFit.cover,
+        ),
+      ),
+
+    ],),
   );
 }
 }
