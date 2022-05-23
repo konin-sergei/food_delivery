@@ -12,21 +12,21 @@ class AppBottomNavigationBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return BottomNavigationBar(
       items: [
-        // BottomNavigationBarItem(
-        //   icon: ImageIcon(
-        //     AssetImage("assets/image/menu.jpg"),
-        //     color: Color(0xFF3A5A98),
-        //   ),
-        //   label: 'Меню',
-        // ),
         BottomNavigationBarItem(
-          icon: Icon(Icons.photo_library_outlined),
-          label: 'Корзина',
+          icon: ImageIcon(
+            AssetImage("assets/image/menu.png"),
+            color: Color(0xFF983A66),
+          ),
+          label: 'Меню',
         ),
         BottomNavigationBarItem(
-          icon: Icon(Icons.photo_library_outlined),
+          icon: ImageIcon(
+            AssetImage("assets/image/basket.png"),
+            color: Color(0xFF3A5A98),
+          ),
           label: 'Корзина',
         ),
+
       ],
       currentIndex: currentPage,
       fixedColor: Colors.blue,
