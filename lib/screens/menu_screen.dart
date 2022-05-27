@@ -1,5 +1,9 @@
-import 'package:flutter/material.dart';
+import 'dart:convert';
 
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+
+import '../models/menu_model.dart';
 import '../widgets/app_bottom_navigation_bar.dart';
 
 class MenuScreen extends StatelessWidget {
@@ -7,6 +11,7 @@ class MenuScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    loadData2(context);
     return Scaffold(
       appBar: AppBar(
         title: Text("Столовка"),
@@ -15,6 +20,22 @@ class MenuScreen extends StatelessWidget {
       bottomNavigationBar: AppBottomNavigationBar(currentPage: 0),
     );
   }
+}
+
+Future<void> loadData2(context) async {
+  String data = await rootBundle.loadString('assets/data/data.json');
+  final jsonResult = jsonDecode(data); //latest Dart
+  print(jsonResult);
+
+}
+
+Future<void> parseJson( context) async {
+
+  String data = await DefaultAssetBundle.of(context).loadString("assets/data/data.json");
+  final jsonResult = jsonDecode(data); //latest Dart
+
+  String jsonString = '';
+  final data2 = dataFromJson(jsonString);
 }
 
 class Menu extends StatelessWidget {

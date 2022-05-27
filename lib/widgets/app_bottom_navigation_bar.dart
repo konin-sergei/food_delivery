@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+
+import 'package:flutter_svg_provider/flutter_svg_provider.dart';
+
 
 class AppBottomNavigationBar extends StatelessWidget {
   final int currentPage;
@@ -15,9 +19,9 @@ class AppBottomNavigationBar extends StatelessWidget {
         BottomNavigationBarItem(
           icon: ImageIcon(
             AssetImage("assets/image/menu.png"),
-            color: Color(0xFF983A66),
+            color: Color(0xFF3A5A98),
           ),
-          label: 'Меню',
+          label: 'Корзина',
         ),
         BottomNavigationBarItem(
           icon: ImageIcon(
