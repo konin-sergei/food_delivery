@@ -1,73 +1,91 @@
-// To parse this JSON data, do
-//
-//     final data = dataFromJson(jsonString);
-
-import 'dart:convert';
-
-List<Data> dataFromJson(String str) => List<Data>.from(json.decode(str).map((x) => Data.fromJson(x)));
-
-String dataToJson(List<Data> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
-
 class Data {
-  Data({
-    required this.id,
-    required this.imageUrl,
-    required this.categoryName,
-    required this.products,
-  });
+  List<Categories>? categories;
 
-  int id;
-  String imageUrl;
-  String categoryName;
-  List<Product> products;
+  Data({this.categories});
 
-  factory Data.fromJson(Map<String, dynamic> json) => Data(
-    id: json["id"],
-    imageUrl: json["image_url"],
-    categoryName: json["category_name"],
-    products: List<Product>.from(json["products"].map((x) => Product.fromJson(x))),
-  );
+  Data.fromJson(Map<String, dynamic> json) {
+    if (json['menu'] != null) {
+      categories = <Categories>[];
+      json['menu'].forEach((v) {
+        categories!.add(new Categories.fromJson(v));
+      });
+    }
+  }
 
-  Map<String, dynamic> toJson() => {
-    "id": id,
-    "image_url": imageUrl,
-    "category_name": categoryName,
-    "products": List<dynamic>.from(products.map((x) => x.toJson())),
-  };
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    if (this.categories != null) {
+      data['menu'] = this.categories!.map((v) => v.toJson()).toList();
+    }
+    return data;
+  }
 }
 
-class Product {
-  Product({
-    required this.id,
-    required this.name,
-    required this.imageUrl,
-    required this.cost,
-    required this.sizes,
-    required this.categoryId,
-  });
+class Categories {
+  int? id;
+  String? imageUrl;
+  String? categoryName;
+  List<Products>? products;
 
-  int id;
-  String name;
-  String imageUrl;
-  int cost;
-  String sizes;
-  int categoryId;
+  Categories({this.id, this.imageUrl, this.categoryName, this.products});
 
-  factory Product.fromJson(Map<String, dynamic> json) => Product(
-    id: json["id"],
-    name: json["name"],
-    imageUrl: json["image_url"],
-    cost: json["cost"],
-    sizes: json["sizes"],
-    categoryId: json["categoryId"],
-  );
+  Categories.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    imageUrl = json['image_url'];
+    categoryName = json['category_name'];
+    if (json['products'] != null) {
+      products = <Products>[];
+      json['products'].forEach((v) {
+        products!.add(new Products.fromJson(v));
+      });
+    }
+  }
 
-  Map<String, dynamic> toJson() => {
-    "id": id,
-    "name": name,
-    "image_url": imageUrl,
-    "cost": cost,
-    "sizes": sizes,
-    "categoryId": categoryId,
-  };
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['id'] = this.id;
+    data['image_url'] = this.imageUrl;
+    data['category_name'] = this.categoryName;
+    if (this.products != null) {
+      data['products'] = this.products!.map((v) => v.toJson()).toList();
+    }
+    return data;
+  }
+}
+
+class Products {
+  int? id;
+  String? name;
+  String? imageUrl;
+  int? cost;
+  String? sizes;
+  int? categoryId;
+
+  Products(
+      {this.id,
+        this.name,
+        this.imageUrl,
+        this.cost,
+        this.sizes,
+        this.categoryId});
+
+  Products.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    name = json['name'];
+    imageUrl = json['image_url'];
+    cost = json['cost'];
+    sizes = json['sizes'];
+    categoryId = json['categoryId'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['id'] = this.id;
+    data['name'] = this.name;
+    data['image_url'] = this.imageUrl;
+    data['cost'] = this.cost;
+    data['sizes'] = this.sizes;
+    data['categoryId'] = this.categoryId;
+    return data;
+  }
 }

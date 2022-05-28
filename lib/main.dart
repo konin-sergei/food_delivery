@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:food_delivery/providers/menu_provider.dart';
+import 'package:provider/provider.dart';
 
 import 'screens/basket_screen.dart';
 import 'screens/menu_screen.dart';
@@ -12,6 +14,34 @@ class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
   // This widget is the root of your application.
+  @override
+  Widget build(BuildContext context) {
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => MenuProvider()),
+      ],
+      child: const App(),
+    );
+  }
+}
+
+class App extends StatefulWidget {
+  const App({Key? key}) : super(key: key);
+
+
+  @override
+  State<App> createState() => _AppState();
+}
+
+class _AppState extends State<App> {
+
+  @override void initState(){
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      Provider.of<MenuProvider>(context, listen: false).loadFromJson();
+    });
+
+  }
   @override
   Widget build(BuildContext context) {
     return MaterialApp(

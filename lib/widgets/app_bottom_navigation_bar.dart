@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-import 'package:flutter_svg_provider/flutter_svg_provider.dart';
-
 
 class AppBottomNavigationBar extends StatelessWidget {
   final int currentPage;
@@ -17,20 +15,21 @@ class AppBottomNavigationBar extends StatelessWidget {
     return BottomNavigationBar(
       items: [
         BottomNavigationBarItem(
-          icon: ImageIcon(
-            AssetImage("assets/image/menu.png"),
-            color: Color(0xFF3A5A98),
+          icon: SvgPicture.asset(
+            "assets/image/menu.svg",
+            semanticsLabel: 'Acme Logo',
+            color: Colors.black12,
           ),
           label: 'Корзина',
         ),
         BottomNavigationBarItem(
-          icon: ImageIcon(
-            AssetImage("assets/image/basket.png"),
-            color: Color(0xFF3A5A98),
+          icon: SvgPicture.asset(
+            "assets/image/basket.svg",
+            semanticsLabel: 'Acme Logo',
+            color: Colors.black12,
           ),
           label: 'Корзина',
         ),
-
       ],
       currentIndex: currentPage,
       fixedColor: Colors.blue,
