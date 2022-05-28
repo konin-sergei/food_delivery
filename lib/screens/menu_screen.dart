@@ -11,7 +11,7 @@ class MenuScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    loadData2(context);
+    loadData2();
     return Scaffold(
       appBar: AppBar(
         title: Text("Столовка"),
@@ -22,16 +22,15 @@ class MenuScreen extends StatelessWidget {
   }
 }
 
-Future<void> loadData2(context) async {
-  String data = await rootBundle.loadString('assets/data/data.json');
+Future<void> loadData2() async {
+  String data = await rootBundle.loadString('packages/food_delivery/assets/data/data.json');
   final jsonResult = jsonDecode(data); //latest Dart
   print(jsonResult);
-
 }
 
-Future<void> parseJson( context) async {
-
-  String data = await DefaultAssetBundle.of(context).loadString("assets/data/data.json");
+Future<void> parseJson(context) async {
+  String data =
+      await DefaultAssetBundle.of(context).loadString("assets/data/data.json");
   final jsonResult = jsonDecode(data); //latest Dart
 
   String jsonString = '';
@@ -40,28 +39,26 @@ Future<void> parseJson( context) async {
 
 class Menu extends StatelessWidget {
 //     return Container(
-const Menu({Key? key}) : super(key: key);
+  const Menu({Key? key}) : super(key: key);
 
 // final MenuData data= [];
-@override
-Widget build(BuildContext context) {
-  return Container(
-    child: Column(children: [
-      Text("cs"),
-      Positioned.fill(
-        child: Image.asset(
-          'assets/image/menu.jpg',
-          fit: BoxFit.cover,
-        ),
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Column(
+        children: [
+          Text("cs"),
+          // Positioned.fill(
+          //   child: Image.asset(
+          //     'assets/image/menu.jpg',
+          //     fit: BoxFit.cover,
+          //   ),
+          // ),
+        ],
       ),
-
-    ],),
-  );
+    );
+  }
 }
-}
-
-
-
 
 //buildRestaurantList(BuildContext context) {
 //       height: MediaQuery.of(context).size.height / 2.4,
