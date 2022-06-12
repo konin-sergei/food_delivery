@@ -37,7 +37,7 @@ class Menu extends StatelessWidget {
         children: [
           data == null
               ? Text("No data")
-              : Text("Has data ${data!.categories!.length}"),
+              : Text("Has data ${data.categories!.length}"),
           Text("cs"),
         ],
       ),
