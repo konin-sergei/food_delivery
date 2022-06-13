@@ -20,7 +20,7 @@ class Data {
     return data;
   }
 }
-
+// Вопрос не понятно как лучше то ли в множественном то ли в единственном числе
 class Categories {
   int? id;
   String? imageUrl;

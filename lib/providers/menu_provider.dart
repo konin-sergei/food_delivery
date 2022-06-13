@@ -10,7 +10,18 @@ class MenuProvider with ChangeNotifier {
 
   void loadFromJson() async {
     _data = await MenuRepository().fetchMenu();
+    notifyListeners();
+  }
+}
 
+
+class CategoryProvider with ChangeNotifier {
+  Categories? _categories;
+
+  Categories? get categories => _categories;
+
+  void loadFromJson(int category_id) async {
+    _categories = await CategoryRepository().fetchCategory(category_id:category_id);
     notifyListeners();
   }
 }

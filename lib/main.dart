@@ -59,6 +59,8 @@ class _AppState extends State<App> {
       routes: {
         '/menu': (context) => MenuScreen(),
         '/section': (context) => SectionScreen(),
+        // Вопрос добавил в конструктор id и теперь не понятно как это дело учитывать в мэминге роутера
+        // пришлось добавить this.id=0 в конструктор
         '/basket': (context) => BasketScreen(),
       },
     );

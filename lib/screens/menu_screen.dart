@@ -8,6 +8,8 @@ import '../models/menu_model.dart';
 import '../widgets/app_bottom_navigation_bar.dart';
 import 'package:provider/provider.dart';
 
+import '../widgets/main_menu_item.dart';
+
 class MenuScreen extends StatelessWidget {
   const MenuScreen({Key? key}) : super(key: key);
 
@@ -18,29 +20,62 @@ class MenuScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text("Столовка"),
       ),
-      body: Menu(),
+      body: Container(
+        child: Menu(),
+      ),
+      //body: Menu(),
       bottomNavigationBar: AppBottomNavigationBar(currentPage: 0),
     );
   }
 }
 
 class Menu extends StatelessWidget {
-//     return Container(
+  //     return Container(
   const Menu({Key? key}) : super(key: key);
 
-// final MenuData data= [];
+  // Вопрос Как сделать чтоб картинка заходила вправа и обрезалась
+  // Вопрос Как сделать текст выровнять влево
+  // Вопрос Как в один захлод вывести четные и не четные элементы меню в шахматном порядке
+  // Вопрос Как перебрать элементы с инднексом элемента
+  // вот в таком примере for (var category in data.categories!) {
+
+  // final MenuData data= [];
+
   @override
   Widget build(BuildContext context) {
     Data? data = context.watch<MenuProvider>().data;
-    return Container(
-      child: Column(
+
+    if (data != null && data.categories!.length > 0) {
+      List<Widget> listLeft = [];
+      List<Widget> listRight = [];
+
+      for (var i=0; i<data.categories!.length; i++){
+        var category = data.categories![i];
+        Widget item = MainMenuItem(
+            categoryName: category.categoryName!,
+            imageUrl: category.imageUrl!,
+            section_id: category.id!);
+        if (i.isEven==true){
+          listLeft.add(item);
+        }else{
+          listRight.add(item);
+        }
+      }
+
+      return Row(
         children: [
-          data == null
-              ? Text("No data")
-              : Text("Has data ${data.categories!.length}"),
-          Text("cs"),
+          Column(
+            children: listLeft,
+          ),
+          Column(
+            children: listRight,
+          ),
         ],
-      ),
-    );
+      );
+    }
+
+
+    return Text('Loading ...');
+
   }
 }
