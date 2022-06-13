@@ -1,12 +1,10 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+
+import 'package:provider/provider.dart';
 import 'package:food_delivery/providers/menu_provider.dart';
 
 import '../models/menu_model.dart';
 import '../widgets/app_bottom_navigation_bar.dart';
-import 'package:provider/provider.dart';
 
 import '../widgets/main_menu_item.dart';
 
@@ -15,7 +13,6 @@ class MenuScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // loadData();
     return Scaffold(
       appBar: AppBar(
         title: Text("Столовка"),
@@ -49,15 +46,15 @@ class Menu extends StatelessWidget {
       List<Widget> listLeft = [];
       List<Widget> listRight = [];
 
-      for (var i=0; i<data.categories!.length; i++){
+      for (var i = 0; i < data.categories!.length; i++) {
         var category = data.categories![i];
         Widget item = MainMenuItem(
             categoryName: category.categoryName!,
             imageUrl: category.imageUrl!,
             section_id: category.id!);
-        if (i.isEven==true){
+        if (i.isEven == true) {
           listLeft.add(item);
-        }else{
+        } else {
           listRight.add(item);
         }
       }
@@ -74,8 +71,6 @@ class Menu extends StatelessWidget {
       );
     }
 
-
     return Text('Loading ...');
-
   }
 }

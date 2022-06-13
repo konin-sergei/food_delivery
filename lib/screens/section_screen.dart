@@ -24,9 +24,6 @@ class SectionScreen extends StatelessWidget {
     //   Provider.of<CategoryProvider>(context, listen: false).loadFromJson(section_id);
     // });
 
-    // Вопрос не работает
-    //
-
     return Scaffold(
       appBar: AppBar(
         title: Text("Салаты"),
@@ -43,11 +40,6 @@ class Section extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Data? data = context.watch<MenuProvider>().data;
-    // Widget item = CategoryItem(imageUrl:"imageUrl", categoryName:"categoryName");
-    // return Container(
-    //   child: Text("aas"),
-    // );
 
     // Вопрос тут странно вызывать метод без передачи category_id
     Categories? categories = context.watch<CategoryProvider>().categories;
