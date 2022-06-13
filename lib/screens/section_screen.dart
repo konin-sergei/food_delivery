@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import '../models/menu_model.dart';
 import '../providers/menu_provider.dart';
 import '../widgets/app_bottom_navigation_bar.dart';
+import '../widgets/category_item.dart';
 
 class SectionScreen extends StatelessWidget {
   final int section_id;
@@ -24,10 +25,7 @@ class SectionScreen extends StatelessWidget {
     // });
 
     // Вопрос не работает
-    Provider.of<CategoryProvider>(context, listen: false).loadFromJson(section_id);
-
-    Categories? categories = context.watch<CategoryProvider>().categories;
-    print(categories);
+    //
 
     return Scaffold(
       appBar: AppBar(
@@ -45,10 +43,56 @@ class Section extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-//    Data? data = context.watch<MenuProvider>().data;
+    // Data? data = context.watch<MenuProvider>().data;
+    // Widget item = CategoryItem(imageUrl:"imageUrl", categoryName:"categoryName");
+    // return Container(
+    //   child: Text("aas"),
+    // );
 
-    return Container(
-      child: Text("aas"),
-    );
+    // Вопрос тут странно вызывать метод без передачи category_id
+    Categories? categories = context.watch<CategoryProvider>().categories;
+    print(categories);
+
+    if (categories != null && categories.products!.length > 0) {
+      List<Widget> listLeft = [];
+      List<Widget> listRight = [];
+
+      //Filter wrong data
+      List<Products> filterProducts = [];
+      for (var i = 0; i < categories.products!.length; i++) {
+        var product = categories.products![i];
+
+        if (product.imageUrl != "") {
+          filterProducts.add(product);
+        }
+      }
+      for (var i = 0; i < filterProducts.length; i++) {
+        var product = filterProducts[i];
+        Widget item = CategoryItem(
+            categoryName: product.name!,
+            imageUrl: product.imageUrl!,
+            cost: product.cost!);
+        if (i.isEven == true) {
+          listLeft.add(item);
+        } else {
+          listRight.add(item);
+        }
+      }
+
+      return SingleChildScrollView(
+        child: Row(
+          children: [
+            Column(
+              children: listLeft,
+            ),
+            Column(
+              children: listRight,
+            ),
+          ],
+        ),
+      );
+    }
+
+    return Text('Load...');
   }
 }

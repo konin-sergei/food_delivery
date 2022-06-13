@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
+import '../providers/menu_provider.dart';
+
+// Вопрос - не смог переименовать виджет и файл в MainItem
 class MainMenuItem extends StatelessWidget {
   final String imageUrl;
   final String categoryName;
@@ -16,6 +20,8 @@ class MainMenuItem extends StatelessWidget {
         // User user = User(name: 'Sergey', age: 20);
         // Navigator.pushNamed(context, '/section',
         //     arguments: WriteDeveloperArgument(user));
+
+        Provider.of<CategoryProvider>(context, listen: false).loadFromJson(section_id);
 
         // Вопрос как добавить после перехода но новую страницу кнопку обратно
         Navigator.of(context)
