@@ -3,7 +3,7 @@ import 'package:provider/provider.dart';
 
 import '../providers/menu_provider.dart';
 
-// Вопрос - не смог переименовать виджет и файл в MainItem
+
 class MainMenuItem extends StatelessWidget {
   final String imageUrl;
   final String categoryName;
@@ -17,6 +17,8 @@ class MainMenuItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
+        // Улучшить Provider.of<CategoryProvider>(context, listen: false).callButton();
+
         // User user = User(name: 'Sergey', age: 20);
         // Navigator.pushNamed(context, '/section',
         //     arguments: WriteDeveloperArgument(user));
@@ -24,6 +26,7 @@ class MainMenuItem extends StatelessWidget {
         Provider.of<CategoryProvider>(context, listen: false).loadFromJson(section_id);
 
         // Вопрос как добавить после перехода но новую страницу кнопку обратно
+        // Ответ лучше бросить элемент класса Products
         Navigator.of(context)
             .pushNamed('/section', arguments: {'section_id': section_id});
 

@@ -38,6 +38,7 @@ class CategoryItem extends StatelessWidget {
             textDirection: TextDirection.ltr,
           ),
           // Вопрос Каким лучше способом разносить элементы вправо и влево
+          // Ответ GridView
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -49,7 +50,7 @@ class CategoryItem extends StatelessWidget {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              // Вопрос не понятно что лучше использовать MaterialButton или ElevatedButton
+
               MaterialButton(
                 height: 40.0,
                 minWidth: 40.0,

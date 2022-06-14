@@ -30,13 +30,11 @@ class Menu extends StatelessWidget {
   //     return Container(
   const Menu({Key? key}) : super(key: key);
 
-  // Вопрос Как сделать чтоб картинка заходила вправа и обрезалась
-  // Вопрос Как сделать текст выровнять влево
-  // Вопрос Как в один заход вывести четные и не четные элементы меню в шахматном порядке
-  // Вопрос Как перебрать элементы с инднексом элемента
-  // вот в таком примере for (var category in data.categories!) {
+  // TODO ответ
 
-  // final MenuData data= [];
+  // Вопрос Как в один заход вывести четные и не четные элементы меню в шахматном порядке
+
+
 
   @override
   Widget build(BuildContext context) {

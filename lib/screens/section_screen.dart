@@ -7,25 +7,28 @@ import '../widgets/app_bottom_navigation_bar.dart';
 import '../widgets/category_item.dart';
 
 class SectionScreen extends StatelessWidget {
-  final int section_id;
 
-  const SectionScreen({Key? key, this.section_id = 0}) : super(key: key);
+  const SectionScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     // Вопрос Как лучше передать параметры на другой экран
+    // Ответ переименовать section in category
     final arguments =
         ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>;
     var section_id = arguments['section_id'];
     print('section_id ${section_id}');
 
-    // Вопрос - непонятно толи сохранить data menu то ли заново по api выкачать
-    // WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-    //   Provider.of<CategoryProvider>(context, listen: false).loadFromJson(section_id);
-    // });
 
     return Scaffold(
       appBar: AppBar(
+        leading: IconButton(
+          icon: Icon(
+            Icons.backspace,
+            color: Colors.green,
+          ),
+          onPressed: () {},
+        ),
         title: Text("Салаты"),
         automaticallyImplyLeading: true,
       ),
@@ -40,7 +43,6 @@ class Section extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     // Вопрос тут странно вызывать метод без передачи category_id
     Categories? categories = context.watch<CategoryProvider>().categories;
     print(categories);
