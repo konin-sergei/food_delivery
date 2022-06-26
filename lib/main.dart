@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:food_delivery/providers/menu_provider.dart';
+import 'package:food_delivery/screens/main_screen.dart';
 import 'package:provider/provider.dart';
 
 import 'screens/basket_screen.dart';
 import 'screens/menu_screen.dart';
+import 'screens/tmp_menu_screen.dart';
 import 'screens/section_screen.dart';
 
 void main() {
@@ -57,8 +59,12 @@ class _AppState extends State<App> {
       ),
       debugShowCheckedModeBanner: false,
       initialRoute: '/menu',
+
       routes: {
-        '/menu': (context) => MenuScreen(),
+        //'/menu': (context) => MenuScreen(),
+        //'/menu': (context) => TmpMenuOffstageScreen(),
+        '/menu': (context) => MainScreen(),
+        // Вопрос Важный - как использовать  BottomNavigationBarItem и routes т.е. при клике на позицию меню переходить на виджет с каталогом подменю
         '/section': (context) => SectionScreen(),
         // Вопрос добавил в конструктор id и теперь не понятно как это дело учитывать в мэминге роутера
         // пришлось добавить this.id=0 в конструктор
@@ -67,3 +73,6 @@ class _AppState extends State<App> {
     );
   }
 }
+
+// Вопрос 19.06.2022
+// Что значит Баннеры — просто картинки. Верстать не нужно

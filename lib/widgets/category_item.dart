@@ -22,17 +22,20 @@ class CategoryItem extends StatelessWidget {
     );
 
     return Container(
-      width: 120,
+      height: 1000, // Вопрос меняю высоту но ничего не происходит (buttom overflow)
       margin: EdgeInsets.only(left: 10, top: 10, right: 10, bottom: 10),
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Image.network(
-            imageUrl,
-            height: 100,
-            width: 100,
+          Center(
+            child: Image.network(
+              imageUrl,
+              height: 100,
+              width: 100,
+            ),
           ),
+
           Text(
             "${categoryName}",
             textDirection: TextDirection.ltr,
@@ -50,7 +53,6 @@ class CategoryItem extends StatelessWidget {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-
               MaterialButton(
                 height: 40.0,
                 minWidth: 40.0,
@@ -66,7 +68,9 @@ class CategoryItem extends StatelessWidget {
               ),
             ],
           ),
+
         ],
+
       ),
     );
   }
