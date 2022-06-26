@@ -13,32 +13,39 @@ class SectionScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     // Вопрос Как лучше передать параметры на другой экран
     // Ответ переименовать section in category
-    final arguments = ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>;
+
+    final arguments =
+        ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>;
     var section_id = arguments['section_id'];
     print('section_id ${section_id}');
 
-    // return Scaffold(
-    //   appBar: AppBar(
-    //     leading: IconButton(
-    //       icon: Icon(
-    //         Icons.backspace,
-    //         color: Colors.green,
-    //       ),
-    //       onPressed: () {},
-    //     ),
-    //     title: Text("Салаты"),
-    //     automaticallyImplyLeading: true,
-    //   ),
-    //   body: Section(),
-    //   bottomNavigationBar: AppBottomNavigationBar(currentPage: 0),
-    // );
+    return Scaffold(
+      appBar: AppBar(
 
-    return Column(
-      children: [
-        Text("Салаты"),
-        Section(),
-      ],
+        leading: IconButton(
+
+          icon: Icon(
+            Icons.backspace,
+            color: Colors.green,
+          ),
+          onPressed: () {
+            Navigator.pop(context, false);
+          },
+        ),
+        title: Text("Салаты"),
+        automaticallyImplyLeading: true,
+      ),
+      body: Section(),
+       bottomNavigationBar: AppBottomNavigationBar(currentPage: 0),
     );
+
+    // Вопрос - получается при navigation push теряется верхняя часть виджета в момент клика в bottomNavigationBar
+    // return Column(
+    //   children: [
+    //     Text("Салаты"),
+    //     Section(),
+    //   ],
+    // );
   }
 }
 
@@ -52,10 +59,6 @@ class Section extends StatelessWidget {
     print(categories);
 
     if (categories != null && categories.products!.length > 0) {
-      //   List<Widget> listLeft = [];
-      //   List<Widget> listRight = [];
-      //
-      //   //Filter wrong data
       List<Products> filterProducts = [];
       for (var i = 0; i < categories.products!.length; i++) {
         var product = categories.products![i];
@@ -67,7 +70,10 @@ class Section extends StatelessWidget {
       List<Widget> listItems = [];
       for (var i = 0; i < filterProducts.length; i++) {
         var product = filterProducts[i];
-        Widget item = CategoryItem(categoryName: product.name!, imageUrl: product.imageUrl!, cost: product.cost!);
+        Widget item = CategoryItem(
+            categoryName: product.name!,
+            imageUrl: product.imageUrl!,
+            cost: product.cost!);
         listItems.add(item);
       }
 

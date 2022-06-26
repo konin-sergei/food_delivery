@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../providers/menu_provider.dart';
+import '../screens/section_screen.dart';
 
 class MainMenuItem extends StatelessWidget {
   final String imageUrl;
@@ -24,9 +25,16 @@ class MainMenuItem extends StatelessWidget {
 
         // Вопрос как добавить после перехода но новую страницу кнопку обратно
         // Ответ лучше бросить элемент класса Products
-        Navigator.of(context).pushNamed('/section', arguments: {'section_id': section_id});
+        // Вопрос - pushNamed не работает теперь!
+        // Could not find a generator for route RouteSettings("/section", {section_id: 3}) in the _WidgetsAppState.
+        // Navigator.of(context).pushNamed('/section', arguments: {'section_id': section_id});
 
-
+        Navigator.push(context, MaterialPageRoute<void>(
+          builder: (BuildContext context) {
+            return SectionScreen();
+          },
+          settings: RouteSettings(name: 'A', arguments: {'section_id': section_id}),
+        ));
 
       },
       child: Column(
