@@ -19,6 +19,7 @@ class MenuRepository {
 // class MenuProvider там веть есть data
 class CategoryRepository {
   Future<Categories?> fetchCategory({required int category_id}) async {
+    print("category_id ${category_id}");
     var dio = Dio();
     final response = await dio.get(
         'https://gist.githubusercontent.com/pabushabi/d0ae94f936156055b0d22a40c9979e0b/raw/1e11b17b3dac9ffb056afa4240db94f5cc3bac4a/menu.json');

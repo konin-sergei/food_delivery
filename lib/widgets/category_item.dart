@@ -1,19 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:food_delivery/models/menu_model.dart';
 import 'package:provider/provider.dart';
 
 import '../providers/menu_provider.dart';
 
 class CategoryItem extends StatelessWidget {
   final String imageUrl;
+  final String sizes;
   final String categoryName;
   final int cost;
 
-  const CategoryItem(
-      {Key? key,
-      required this.categoryName,
-      required this.imageUrl,
-      required this.cost})
-      : super(key: key);
+  const CategoryItem({Key? key, required this.categoryName, required this.imageUrl, required this.cost, required this.sizes}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -22,8 +19,7 @@ class CategoryItem extends StatelessWidget {
     );
 
     return Container(
-      height: 1000, // Вопрос меняю высоту но ничего не происходит (buttom overflow)
-      margin: EdgeInsets.only(left: 10, top: 10, right: 10, bottom: 10),
+      // margin: EdgeInsets.only(left: 10, top: 10, right: 10, bottom: 10),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -31,17 +27,14 @@ class CategoryItem extends StatelessWidget {
           Center(
             child: Image.network(
               imageUrl,
-              height: 100,
-              width: 100,
+              height: 160,
+              width: 107,
             ),
           ),
-
           Text(
             "${categoryName}",
             textDirection: TextDirection.ltr,
           ),
-          // Вопрос Каким лучше способом разносить элементы вправо и влево
-          // Ответ GridView
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -59,7 +52,10 @@ class CategoryItem extends StatelessWidget {
                 color: Colors.green,
                 textColor: Colors.white,
                 child: new Text("+"),
-                onPressed: () => {},
+                onPressed: () {
+                  Position position = Position(categoryName, cost, 1, sizes, imageUrl);
+                  context.read<BasketProvider>().addPosition(position);
+                },
                 splashColor: Colors.redAccent,
                 elevation: 0,
                 shape: RoundedRectangleBorder(
@@ -70,7 +66,6 @@ class CategoryItem extends StatelessWidget {
           ),
 
         ],
-
       ),
     );
   }

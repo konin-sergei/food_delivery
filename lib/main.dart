@@ -5,8 +5,7 @@ import 'package:provider/provider.dart';
 
 import 'screens/basket_screen.dart';
 import 'screens/menu_screen.dart';
-import 'screens/tmp_menu_screen.dart';
-import 'screens/section_screen.dart';
+import 'screens/category_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -22,6 +21,7 @@ class MyApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(create: (_) => MenuProvider()),
         ChangeNotifierProvider(create: (_) => CategoryProvider()),
+        ChangeNotifierProvider(create: (_) => BasketProvider()),
       ],
       child: const App(),
     );
@@ -42,6 +42,7 @@ class _AppState extends State<App> {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       Provider.of<MenuProvider>(context, listen: false).loadFromJson();
+      Provider.of<BasketProvider>(context, listen: false).createBasket();
     });
 
   }
@@ -58,21 +59,13 @@ class _AppState extends State<App> {
         ),
       ),
       debugShowCheckedModeBanner: false,
-      initialRoute: '/menu',
-
+      initialRoute: '/',
       routes: {
-        //'/menu': (context) => MenuScreen(),
-        //'/menu': (context) => TmpMenuOffstageScreen(),
-        '/menu': (context) => MainScreen(),
-        // Вопрос Важный - как использовать  BottomNavigationBarItem и routes т.е. при клике на позицию меню переходить на виджет с каталогом подменю
-        '/section': (context) => SectionScreen(),
-        // Вопрос добавил в конструктор id и теперь не понятно как это дело учитывать в мэминге роутера
-        // пришлось добавить this.id=0 в конструктор
+        '/': (context) => MainScreen(),
+        '/category': (context) => CategoryScreen(), // Вопрос добавил в конструктор id и теперь не понятно как это дело учитывать в мэминге роутера  пришлось добавить this.id=0 в конструктор
         '/basket': (context) => BasketScreen(),
       },
     );
   }
 }
 
-// Вопрос 19.06.2022
-// Что значит Баннеры — просто картинки. Верстать не нужно

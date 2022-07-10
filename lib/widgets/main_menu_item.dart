@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../providers/menu_provider.dart';
-import '../screens/section_screen.dart';
+import '../screens/category_screen.dart';
 
 class MainMenuItem extends StatelessWidget {
   final String imageUrl;
   final String categoryName;
-  final int section_id;
+  final int category_id;
 
-  const MainMenuItem({Key? key, required this.categoryName, required this.imageUrl, required this.section_id}) : super(key: key);
+  const MainMenuItem({Key? key, required this.categoryName, required this.imageUrl, required this.category_id}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -18,31 +18,33 @@ class MainMenuItem extends StatelessWidget {
         // Улучшить Provider.of<CategoryProvider>(context, listen: false).callButton();
 
         // User user = User(name: 'Sergey', age: 20);
-        // Navigator.pushNamed(context, '/section',
+        // Navigator.pushNamed(context, '/category',
         //     arguments: WriteDeveloperArgument(user));
 
-        Provider.of<CategoryProvider>(context, listen: false).loadFromJson(section_id);
+        Provider.of<CategoryProvider>(context, listen: false).loadFromJson(category_id);
 
         // Вопрос как добавить после перехода но новую страницу кнопку обратно
         // Ответ лучше бросить элемент класса Products
         // Вопрос - pushNamed не работает теперь!
-        // Could not find a generator for route RouteSettings("/section", {section_id: 3}) in the _WidgetsAppState.
-        // Navigator.of(context).pushNamed('/section', arguments: {'section_id': section_id});
+        // Could not find a generator for route RouteSettings("/category", {category_id: 3}) in the _WidgetsAppState.
+        // Navigator.of(context).pushNamed('/category', arguments: {'category_id': category_id});
 
-        Navigator.push(context, MaterialPageRoute<void>(
-          builder: (BuildContext context) {
-            return SectionScreen();
-          },
-          settings: RouteSettings(name: 'A', arguments: {'section_id': section_id}),
-        ));
+        // Navigator.of(context).pushNamed('/category', arguments: {'category_id': category_id});
+
+        Navigator.push(
+          context,
+          MaterialPageRoute<void>(
+            builder: (BuildContext context) {
+              return CategoryScreen();
+            },
+          ),
+        );
 
       },
       child: Column(
         children: [
           Container(
             margin: EdgeInsets.only(left: 5, top: 5, right: 5, bottom: 5),
-            // Вопрос 15.06.2022
-            // Делаю height: 200 и все ломается
             height: 170,
             width: 170,
             decoration: BoxDecoration(
@@ -74,9 +76,6 @@ class MainMenuItem extends StatelessWidget {
                     ),
                   ),
                 ),
-                // Вопрос 15.06.2022
-                // Хочу добавить padding снизу
-                // добавляю через SizedBox(height: 10,) и все ломается
               ],
             ),
           ),

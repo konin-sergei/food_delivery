@@ -25,3 +25,17 @@ class CategoryProvider with ChangeNotifier {
     notifyListeners();
   }
 }
+
+class BasketProvider with ChangeNotifier {
+  late Basket _basket;
+
+  Basket get basket => _basket;
+  List<Position>? get positions => _basket.positions;
+
+  void createBasket(){
+    _basket = Basket();
+  }
+  void addPosition(Position position){
+    _basket.positions!.add(position);
+  }
+}

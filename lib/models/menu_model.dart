@@ -1,3 +1,6 @@
+// Сервис json to dart
+// https://javiercbk.github.io/json_to_dart/
+
 class Data {
   List<Categories>? categories;
 
@@ -20,6 +23,7 @@ class Data {
     return data;
   }
 }
+
 // Вопрос не понятно как лучше то ли в множественном то ли в единственном числе
 // Ответ - класс в единственном числе
 class Categories {
@@ -62,13 +66,7 @@ class Products {
   String? sizes;
   int? categoryId;
 
-  Products(
-      {this.id,
-        this.name,
-        this.imageUrl,
-        this.cost,
-        this.sizes,
-        this.categoryId});
+  Products({this.id, this.name, this.imageUrl, this.cost, this.sizes, this.categoryId});
 
   Products.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -89,4 +87,24 @@ class Products {
     data['categoryId'] = this.categoryId;
     return data;
   }
+}
+
+class Position {
+  String name;
+  String sizes;
+  int cost;
+  int count;
+  String image_url;
+
+  Position(this.name, this.cost, this.count, this.sizes,   this.image_url);
+}
+
+class Basket {
+  int summ = 0;
+
+  Basket() {
+    this.positions = [];
+  }
+
+  List<Position>? positions;
 }

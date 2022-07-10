@@ -4,3 +4,21 @@
 4. Как загружать данные из локальной папки в assets например json файл для парсинга
 5. В каком методе stateless widget грузить данные из json файла
 Для себя english_books не смог запустить на ios
+
+01.07.2022
+В чем разница
+Navigator.of(context).pushNamed
+Navigator.pushNamed
+
+
+02.07.2022
+Как перестроить только часть виджета в профайдере.
+Смотрю пример и не понимаю
+Foo(
+  child: Consumer<A>(
+    builder: (_, a, child) {
+      return Bar(a: a, child: child);
+    },
+    child: Baz(),
+  ),
+)

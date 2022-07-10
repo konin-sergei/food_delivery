@@ -3,36 +3,68 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 import 'basket_screen.dart';
 import 'menu_screen.dart';
-import 'section_screen.dart';
+import 'category_screen.dart';
 
 class MainScreen extends StatelessWidget {
   const MainScreen({Key? key}) : super(key: key);
 
-  static const String _title = 'Flutter Code Sample';
+  static const String _title = 'Food delivery';
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       title: _title,
-      home: MyStatefulWidget(),
+      theme: ThemeData(
+        // Define the default brightness and colors.
+        // brightness: Brightness.dark,
+        // primaryColor: Colors.amber[800],
+
+        // Define the default font family.
+        fontFamily: 'Inter',
+        appBarTheme: AppBarTheme(
+            elevation: 0,
+            backgroundColor: Colors.transparent,
+            titleTextStyle: TextStyle(
+              color: Colors.black,
+              fontFamily: 'Inter',
+              fontWeight: FontWeight.w700,
+              fontSize: 20,
+            )),
+
+        // Define the default `TextTheme`. Use this to specify the default
+        // text styling for headlines, titles, bodies of text, and more.
+        textTheme: const TextTheme(
+          headline1: TextStyle(fontSize: 26.0, fontWeight: FontWeight.w700),
+          headline6: TextStyle(fontSize: 20.0, fontWeight: FontWeight.w700),
+          bodyText2: TextStyle(fontSize: 14.0, fontFamily: 'Inter'),
+        ),
+      ),
+      home: MyScreenStatefulWidget(),
     );
   }
 }
 
-class MyStatefulWidget extends StatefulWidget {
-  const MyStatefulWidget({Key? key}) : super(key: key);
+//style: TextStyle(
+//             color: Colors.black,
+//             fontFamily: 'Inter',
+//             fontWeight: FontWeight.w700,
+//             fontSize: 20,
+//           ),
+
+class MyScreenStatefulWidget extends StatefulWidget {
+  const MyScreenStatefulWidget({Key? key}) : super(key: key);
 
   @override
-  State<MyStatefulWidget> createState() => _MyStatefulWidgetState();
+  State<MyScreenStatefulWidget> createState() => _MyScreenStatefulWidgetState();
 }
 
-class _MyStatefulWidgetState extends State<MyStatefulWidget> {
+class _MyScreenStatefulWidgetState extends State<MyScreenStatefulWidget> {
   int _selectedIndex = 0;
   static const TextStyle optionStyle = TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   static const List<Widget> _widgetOptions = <Widget>[
     MenuScreen(),
     BasketScreen(),
-    SectionScreen(),
+    CategoryScreen(),
   ];
 
   void _onItemTapped(int index) {
@@ -45,11 +77,20 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Основное меню'),
+        title: const Text(
+          'Столовка',
+          // style: TextStyle(
+          //   color: Colors.black,
+          //   fontFamily: 'Inter',
+          //   fontWeight: FontWeight.w700,
+          //   fontSize: 20,
+          // ),
+        ),
+        elevation: 0,
+        backgroundColor: Colors.transparent,
       ),
       body: Center(
         child: _widgetOptions.elementAt(_selectedIndex),
-
       ),
       // Вопрос - а при bottomNavigationBar оказывается состояние поля ввода сбрасывается
       bottomNavigationBar: BottomNavigationBar(
