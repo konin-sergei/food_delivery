@@ -30,6 +30,7 @@ class MenuScreen extends StatelessWidget {
         mainAxisSpacing: 5,
         crossAxisCount: 2,
         children: listItems,
+          childAspectRatio: 10/14,
       );
     }
 

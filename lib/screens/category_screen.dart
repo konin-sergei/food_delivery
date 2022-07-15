@@ -77,7 +77,7 @@ class Category extends StatelessWidget {
         mainAxisSpacing: 5,
         crossAxisCount: 2,
         children: listItems,
-        childAspectRatio: 700 / 1000,
+        childAspectRatio: 700 / 1150,
       );
     }
 
