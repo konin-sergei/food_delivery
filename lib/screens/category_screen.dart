@@ -11,10 +11,6 @@ class CategoryScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Вопрос Как лучше передать параметры на другой экран
-    // Ответ переименовать section in category
-
-
     // if (ModalRoute.of(context)?.settings.arguments == null) {
     //   return Text("Load...");
     // }
@@ -27,7 +23,7 @@ class CategoryScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-          icon: Icon(
+          icon: const Icon(
             Icons.arrow_back,
             color: Colors.black,
           ),

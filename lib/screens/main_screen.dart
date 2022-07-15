@@ -15,13 +15,8 @@ class MainScreen extends StatelessWidget {
     return MaterialApp(
       title: _title,
       theme: ThemeData(
-        // Define the default brightness and colors.
-        // brightness: Brightness.dark,
-        // primaryColor: Colors.amber[800],
-
-        // Define the default font family.
         fontFamily: 'Inter',
-        appBarTheme: AppBarTheme(
+        appBarTheme: const AppBarTheme(
             elevation: 0,
             backgroundColor: Colors.transparent,
             titleTextStyle: TextStyle(
@@ -30,9 +25,6 @@ class MainScreen extends StatelessWidget {
               fontWeight: FontWeight.w700,
               fontSize: 20,
             )),
-
-        // Define the default `TextTheme`. Use this to specify the default
-        // text styling for headlines, titles, bodies of text, and more.
         textTheme: const TextTheme(
           headline1: TextStyle(fontSize: 26.0, fontWeight: FontWeight.w700),
           headline6: TextStyle(fontSize: 20.0, fontWeight: FontWeight.w700),
@@ -43,13 +35,6 @@ class MainScreen extends StatelessWidget {
     );
   }
 }
-
-//style: TextStyle(
-//             color: Colors.black,
-//             fontFamily: 'Inter',
-//             fontWeight: FontWeight.w700,
-//             fontSize: 20,
-//           ),
 
 class MyScreenStatefulWidget extends StatefulWidget {
   const MyScreenStatefulWidget({Key? key}) : super(key: key);
@@ -79,12 +64,6 @@ class _MyScreenStatefulWidgetState extends State<MyScreenStatefulWidget> {
       appBar: AppBar(
         title: const Text(
           'Столовка',
-          // style: TextStyle(
-          //   color: Colors.black,
-          //   fontFamily: 'Inter',
-          //   fontWeight: FontWeight.w700,
-          //   fontSize: 20,
-          // ),
         ),
         elevation: 0,
         backgroundColor: Colors.transparent,

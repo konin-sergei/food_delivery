@@ -16,19 +16,10 @@ class MainMenuItem extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         // Улучшить Provider.of<CategoryProvider>(context, listen: false).callButton();
-
-        // User user = User(name: 'Sergey', age: 20);
-        // Navigator.pushNamed(context, '/category',
-        //     arguments: WriteDeveloperArgument(user));
-
         Provider.of<CategoryProvider>(context, listen: false).loadFromJson(category_id);
 
-        // Вопрос как добавить после перехода но новую страницу кнопку обратно
-        // Ответ лучше бросить элемент класса Products
         // Вопрос - pushNamed не работает теперь!
         // Could not find a generator for route RouteSettings("/category", {category_id: 3}) in the _WidgetsAppState.
-        // Navigator.of(context).pushNamed('/category', arguments: {'category_id': category_id});
-
         // Navigator.of(context).pushNamed('/category', arguments: {'category_id': category_id});
 
         Navigator.push(
